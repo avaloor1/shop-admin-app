@@ -2,6 +2,10 @@ import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
 
+if not st.session_state.get("authenticated"):
+    st.error("You must be signed in to access this page.")
+    st.stop()
+
 account = st.secrets["credentials"]["account"]
 user = st.secrets["credentials"]["user"]
 warehouse = st.secrets["credentials"]["warehouse"]
