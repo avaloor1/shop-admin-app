@@ -40,4 +40,4 @@ if not st.session_state.authenticated:
 
 if st.session_state.authenticated:
     st.success("✅ Login successful.")
-    st.page_link("pages/1_Data_Management", label="📊 Go to Data Management")
+    st.page_link("pages/1_Data_Management.py", label="📊 Go to Data Management")
