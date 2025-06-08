@@ -1,0 +1,6 @@
+streamlit
+snowflake-sqlalchemy
+cryptography
+bcrypt
+pandas
+sqlalchemy
