@@ -1,7 +1,8 @@
 import streamlit as st
-print("Session state keys at app start:", list(st.session_state.keys()))
+#print("Session state keys at app start:", list(st.session_state.keys()))
 from sqlalchemy import create_engine, text
 import bcrypt
+from pyutils import logoff_options
 
 # Load Snowflake credentials
 account = st.secrets["credentials"]["account"]
@@ -22,6 +23,7 @@ def check_login(username, password):
         result = conn.execute(text("SELECT PASSWORD_HASH FROM USER_ACCOUNTS WHERE USERNAME = :username"), {"username": username}).fetchone()
     return result and bcrypt.checkpw(password.encode('utf-8'), result[0].encode('utf-8'))
 
+
 st.title("🛒 Shop Admin Login")
 
 if "authenticated" not in st.session_state:
@@ -41,3 +43,7 @@ if not st.session_state.authenticated:
 if st.session_state.authenticated:
     st.success("✅ Login successful.")
     st.page_link("pages/1_Data_Management.py", label="📊 Go to Data Management")
+    # Enable logoff button
+    logoff_options()
+
+

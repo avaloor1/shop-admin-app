@@ -1,10 +1,20 @@
 import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
+from pyutils import logoff_options
 
-if not st.session_state.get("authenticated"):
+# Check if the user is authenticated
+if "authenticated" not in st.session_state:
+#if not st.session_state.get("authenticated"):
     st.error("You must be signed in to access this page.")
     st.stop()
+    
+if "authenticated" not in st.session_state or not st.session_state.authenticated:
+    st.error("You must be signed in to access this page.")
+    st.stop()
+else:
+    #display logoff button
+    logoff_options()
 
 account = st.secrets["credentials"]["account"]
 user = st.secrets["credentials"]["user"]
